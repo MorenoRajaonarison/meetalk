@@ -7,7 +7,13 @@ const login = async (req, res) => {
     const {email, password} = req.body
     const user = await User.findOne({email: email.toLowerCase()})
     if(user && (await bcrypt.compare(password, user.password))) {
-      const token = 'token'
+      // Creation du JWT token
+      const token = jwt.sign({
+        id: user._id,
+        email
+      }, process.env.JWT_KEY,{
+        expiresIn: '24h'
+      })
       return res.status(200).json({
         userDetails: {
           email: user.email,
@@ -18,7 +24,7 @@ const login = async (req, res) => {
     }
     return res.status(400).send('invalid credentials...')
   } catch (e) {
-    console.log(e.message)
+    return res.status(401).send(e.message)
   }
 }
 
