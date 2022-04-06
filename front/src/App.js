@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
-import Loginpage from './authPages/LoginPage/LoginPage'
+import LoginPage from './authPages/LoginPage/LoginPage'
 import Registerpage from './authPages/RegisterPage/RegisterPage'
 import Dashboard from './Dashboard/Dashboard'
 
@@ -10,7 +10,7 @@ function App() {
     <Router>
       <Switch>
         <Route exact path='/login'>
-          <Loginpage/>
+          <LoginPage/>
         </Route>
         <Route exact path='/register'>
           <Registerpage/>
