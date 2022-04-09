@@ -1,12 +1,12 @@
 import React from 'react';
-import Authbox from "../../shared/components/AuthBox";
+import AuthBox from "../../shared/components/AuthBox";
 
-const Registerpage = () => {
+const RegisterPage = () => {
   return (
-    <Authbox>
+    <AuthBox>
       RegiserPage
-    </Authbox>
+    </AuthBox>
   );
 }
 
-export default Registerpage
+export default RegisterPage
