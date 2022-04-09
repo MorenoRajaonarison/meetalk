@@ -4,36 +4,35 @@ import RedirectInfo from "../../shared/components/RedirectInfo"
 import {useHistory} from 'react-router-dom'
 import {Tooltip} from '@mui/material'
 
-
-const LoginPageFooter = ({handleLogin, isValid}) => {
+const RegisterPageFooter = ({handleRegister, isValid}) => {
   const history = useHistory()
 
-  const handlePushToRegisterPage = () => {
-    history.push("/register")
+  const handlePushToLoginPage = () => {
+    history.push("/login")
   }
 
   return (
     <>
-      <Tooltip title={!isValid? 'Enter correct email and password auth':'Press to log in'}>
+      <Tooltip title={!isValid? 'Provide a valid credentials': 'Press to register'}>
         <div>
           <CustomPrimaryButton
-            label="Log in"
+            label="Register"
             style={{marginTop: '30px'}}
             disabled={!isValid}
-            onClick={handleLogin}
+            onClick={handleRegister}
           />
         </div>
       </Tooltip>
 
       <RedirectInfo
-        text='Need an account? '
-        redirectText='Create an account'
+        text='Already have an account? '
+        redirectText='Log in'
         style={{marginTop: '5px'}}
-        redirectHandler={handlePushToRegisterPage}
+        redirectHandler={handlePushToLoginPage}
       />
     </>
 
   );
 };
 
-export default LoginPageFooter;
+export default RegisterPageFooter
