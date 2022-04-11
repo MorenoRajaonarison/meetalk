@@ -20,12 +20,12 @@ const setUserDetails = userDetails => {
 
 const login = (userDetails, history) => {
   return async (dispatch) => {
-    const res = api.login(userDetails)
+    const res = await api.login(userDetails)
     if(res.error){
 
     } else {
       const {userDetails} = res?.data
-      localStorage.setItem('user', JSON.stringify('userDetails'))
+      localStorage.setItem('user', JSON.stringify(userDetails))
       dispatch(setUserDetails(userDetails))
       history.push('/dashboard')
     }
@@ -34,12 +34,12 @@ const login = (userDetails, history) => {
 
 const register = (userDetails, history) => {
   return async (dispatch) => {
-    const res = api.register(userDetails)
+    const res = await api.register(userDetails)
+    console.log(userDetails)
     if(res.error){
-
     } else {
       const {userDetails} = res?.data
-      localStorage.setItem('user', JSON.stringify('userDetails'))
+      localStorage.setItem('user', JSON.stringify(userDetails))
       dispatch(setUserDetails(userDetails))
       history.push('/dashboard')
     }

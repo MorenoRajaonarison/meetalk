@@ -2,10 +2,14 @@ import React, {useState, useEffect} from 'react'
 import AuthBox from '../../shared/components/AuthBox'
 import LoginPageHeader from './LoginPageHeader'
 import LoginPageInput from './LoginPageInput'
-import LoginPageFooter from "./LoginPageFooter";
-import {validateFormLogin} from "../../shared/Utils/validators";
+import LoginPageFooter from "./LoginPageFooter"
+import {validateFormLogin} from "../../shared/Utils/validators"
+import {connect} from "react-redux"
+import {useHistory} from "react-router-dom";
+import {getActions} from "../../store/actions/authActions"
 
-const LoginPage = () => {
+const LoginPage = ({login}) => {
+  const history = useHistory()
   const [mail, setMail] = useState('')
   const [password, setPassword] = useState('')
   const [isValid, setIsValid] = useState(false)
@@ -15,7 +19,7 @@ const LoginPage = () => {
   }, [mail, password, setIsValid])
 
   const handleLogin = () => {
-    console.log({mail, password})
+    login({mail, password}, history)
   }
 
   return (
@@ -32,7 +36,13 @@ const LoginPage = () => {
         handleLogin={handleLogin}
       />
     </AuthBox>
-  );
+  )
 }
 
-export default LoginPage
+const mapActionsToProps = dispatch => {
+  return {
+    ...getActions(dispatch)
+  }
+}
+
+export default connect(null, mapActionsToProps)(LoginPage)

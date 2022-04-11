@@ -3,9 +3,13 @@ import AuthBox from "../../shared/components/AuthBox"
 import {Typography} from "@mui/material"
 import RegisterPageInput from "./RegisterPageInput"
 import RegisterPageFooter from "./RegisterPageFooter"
-import {validateFormRegister} from "../../shared/Utils/validators";
+import {validateFormRegister} from "../../shared/Utils/validators"
+import {getActions} from "../../store/actions/authActions"
+import {connect} from "react-redux"
+import {useHistory} from "react-router-dom";
 
-const RegisterPage = () => {
+const RegisterPage = ({register}) => {
+  const history = useHistory()
   const [mail, setMail] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -16,7 +20,8 @@ const RegisterPage = () => {
   }, [mail, username, password])
 
   const  handleRegister = () => {
-    console.log({mail,password,username})
+    const userDetails = {mail, password, username}
+    register(userDetails, history)
   }
 
   return (
@@ -35,7 +40,13 @@ const RegisterPage = () => {
         isValid={isFormValid}
       />
     </AuthBox>
-  );
+  )
 }
 
-export default RegisterPage
+const mapActionsToProps = dispatch => {
+  return {
+    ...getActions(dispatch)
+  }
+}
+
+export default connect(null, mapActionsToProps)(RegisterPage)

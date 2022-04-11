@@ -4,19 +4,19 @@ const jwt = require('jsonwebtoken')
 
 const login = async (req, res) => {
   try {
-    const {email, password} = req.body
-    const user = await User.findOne({email: email.toLowerCase()})
+    const {mail, password} = req.body
+    const user = await User.findOne({mail: mail.toLowerCase()})
     if(user && (await bcrypt.compare(password, user.password))) {
       // Creation du JWT token
       const token = jwt.sign({
         id: user._id,
-        email
+        mail
       }, process.env.JWT_KEY,{
         expiresIn: '24h'
       })
       return res.status(200).json({
         userDetails: {
-          email: user.email,
+          mail: user.mail,
           username: user.username,
           token
         }

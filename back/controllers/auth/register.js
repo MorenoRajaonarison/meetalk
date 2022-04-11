@@ -4,18 +4,18 @@ const jwt = require('jsonwebtoken')
 
 const register = async (req, res) => {
   try{
-    const {username, email, password} = req.body
+    const {username, mail, password} = req.body
 
     // Verification si l'user exist
-    const userExist = await User.exists({email: email.toLowerCase() })
-    userExist && res.status(409).send('Ce Email est deja prise')
+    const userExist = await User.exists({mail: mail.toLowerCase() })
+    userExist && res.status(409).send('Ce mail est deja prise')
 
     // Encryption du password
     const encryptPass = await bcrypt.hash(password, 10)
 
     // Creation et enregistrement de l'user document dans le db
     const user = await User.create({
-      email: email.toLowerCase(),
+      mail: mail.toLowerCase(),
       username,
       password: encryptPass
     })
@@ -23,14 +23,14 @@ const register = async (req, res) => {
     // Creation du JWT token
     const token = jwt.sign({
       id: user._id,
-      email
+      mail
     }, process.env.JWT_KEY,{
       expiresIn: '24h'
     })
 
     res.status(201).json({
       userDetails: {
-        email: user.email,
+        mail: user.mail,
         username: user.username,
         token
       }
