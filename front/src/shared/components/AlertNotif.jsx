@@ -2,20 +2,34 @@ import React from 'react'
 import Alert from '@mui/material/Alert'
 import Snackbar from '@mui/material/Snackbar'
 import {connect} from 'react-redux'
+import {getActions} from "../../store/actions/alertActions"
 
-const AlertNotif = () => {
+const AlertNotif = ({showMsg,closeAlertMsg, msgContent}) => {
+  console.log({showMsg,closeAlertMsg, msgContent})
   return (
     <Snackbar
       anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}
-      onClose={()=>{}}
-      // autoHideDuration={6000}
-      open
+      open={showMsg}
+      onClose={closeAlertMsg}
+      autoHideDuration={6000}
     >
       <Alert severity='info'>
-        message
+        {msgContent}
       </Alert>
     </Snackbar>
   )
 }
 
-export default AlertNotif
+const mapStoreStateToProps = ({alert}) => {
+  return {
+    ...alert
+  }
+}
+
+const mapActionsToProps = dispatch => {
+  return {
+    ...getActions(dispatch)
+  }
+}
+
+export default connect(mapStoreStateToProps, mapActionsToProps)(AlertNotif)

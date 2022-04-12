@@ -8,7 +8,9 @@ const register = async (req, res) => {
 
     // Verification si l'user exist
     const userExist = await User.exists({mail: mail.toLowerCase() })
-    userExist && res.status(409).send('Ce mail est deja prise')
+    if(userExist){
+      return res.status(409).send('Ce mail est deja prise')
+    }
 
     // Encryption du password
     const encryptPass = await bcrypt.hash(password, 10)
@@ -36,7 +38,7 @@ const register = async (req, res) => {
       }
     })
   }catch (e){
-    console.log(e.message)
+    return res.status(500).send("Error occured. Please try again");
   }
 }
 module.exports = register
