@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '@mui/material/Button'
 
-const CustomPrimaryButton = ({label, style, disabled, onClick}) => {
+const CustomPrimaryButton = ({label, additionalStyles, disabled, onClick}) => {
   return (
     <Button
       variant='contained'
@@ -16,11 +16,11 @@ const CustomPrimaryButton = ({label, style, disabled, onClick}) => {
       }}
       disabled={disabled}
       onClick={onClick}
-      style = {style ? style: {}}
+      style = {additionalStyles ? additionalStyles: {}}
     >
       {label}
     </Button>
-  );
-};
+  )
+}
 
-export default CustomPrimaryButton;
+export default CustomPrimaryButton

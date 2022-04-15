@@ -18,7 +18,7 @@ const LoginPageFooter = ({handleLogin, isValid}) => {
         <div>
           <CustomPrimaryButton
             label="Log in"
-            style={{marginTop: '30px'}}
+            additionalStyles={{marginTop: '30px'}}
             disabled={!isValid}
             onClick={handleLogin}
           />
