@@ -1,7 +1,8 @@
 import React from 'react'
 import Button from '@mui/material/Button'
 import Avatar from "../../../shared/components/Avatar"
-import {Typography} from "@mui/material";
+import {Typography} from "@mui/material"
+import OnlineIndicator from "./OnlineIndicator"
 
 const FriendsListItem = ({id,username,isOnline}) => {
   return (
@@ -30,7 +31,7 @@ const FriendsListItem = ({id,username,isOnline}) => {
       >
       {username}
       </Typography>
-
+      {isOnline && <OnlineIndicator/>}
     </Button>
   )
 }
