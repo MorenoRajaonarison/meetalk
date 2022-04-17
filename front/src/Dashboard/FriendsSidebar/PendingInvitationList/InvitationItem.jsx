@@ -1,13 +1,21 @@
 import React, {useState} from 'react'
 import {Tooltip, Typography, Box} from "@mui/material"
 import Avatar from "../../../shared/components/Avatar"
+import InvitationDecision from './InvitationDecision'
 
 const InvitationItem = ({id, username, mail, acceptInvitation = () => {}, rejectInvitation = () => {}}) => {
   const [isDisabledBtn, setIsDisabledBtn] = useState(false)
+
   const handleAccept = () => {
     acceptInvitation({id})
     setIsDisabledBtn(true)
   }
+
+  const handleReject = () => {
+    rejectInvitation({id})
+    setIsDisabledBtn(false)
+  }
+
   return (
     <Tooltip title={mail}>
       <div style={{width: '100%'}}>
@@ -30,6 +38,11 @@ const InvitationItem = ({id, username, mail, acceptInvitation = () => {}, reject
             variant='subtitle1'>
             {username}
           </Typography>
+          <InvitationDecision
+            disabled={isDisabledBtn}
+            accept={handleAccept}
+            reject={handleReject}
+          />
         </Box>
       </div>
     </Tooltip>
