@@ -5,7 +5,6 @@ import {connect} from 'react-redux'
 import {getActions} from "../../store/actions/alertActions"
 
 const AlertNotif = ({showMsg,closeAlertMsg, msgContent}) => {
-  console.log({showMsg,closeAlertMsg, msgContent})
   return (
     <Snackbar
       anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}

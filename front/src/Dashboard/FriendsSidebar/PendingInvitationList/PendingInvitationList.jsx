@@ -1,5 +1,16 @@
 import React from 'react'
 import {styled} from '@mui/material'
+import InvitationItem from './InvitationItem'
+
+const INVITATIONS = [
+  {
+    _id: '1',
+    senderId: {
+      username: 'Andry',
+      mail: 'andry@gmail.com'
+    }
+  }
+]
 
 const MainContainer = styled('div')({
   width: '100%',
@@ -11,11 +22,16 @@ const MainContainer = styled('div')({
 })
 
 const PendingInvitationList = () => {
-  return (
-    <MainContainer>
-
-    </MainContainer>
-  )
+  return <MainContainer>
+    {INVITATIONS.map(i => (
+      <InvitationItem
+        key={i._id}
+        id={i._id}
+        username={i.senderId.username}
+        mail={i.senderId.mail}
+      />
+    ))}
+  </MainContainer>
 }
 
 export default PendingInvitationList
