@@ -5,7 +5,8 @@ const config = process.env
 const verifyTokenSocket = (socket, next) => {
   const token = socket.handshake.auth?.token
   try {
-    socket.user = jwt.verify(token, config.JWT_KEY)
+    const decoded = jwt.verify(token, config.JWT_KEY)
+    socket.user = decoded
   } catch (e) {
     return next(new Error('NOT AUTHORIZED'))
   }

@@ -1,4 +1,6 @@
 const authSocket = require("./middlewares/authSocket")
+const newConnectionHandler = require('./socketHandlers/newConnectionHandler')
+
 const registerSocketServer = server => {
   const io = require('socket.io')(server, {
     cors: {
@@ -14,6 +16,7 @@ const registerSocketServer = server => {
   io.on('connection', socket => {
     console.log('user connected')
     console.log(socket.id)
+    newConnectionHandler(socket, io)
   })
 }
 
