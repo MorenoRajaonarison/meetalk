@@ -45,3 +45,15 @@ const checkResponseCode = e => {
     (responseCode === 401 || responseCode === 403) && logout()
   }
 }
+
+export const sendFriendsInvitation = async data => {
+  try {
+    return await apiClient.post('/friend-invitation/invite', data)
+  } catch(e){
+    checkResponseCode(e)
+    return {
+      error: true,
+      e
+    }
+  }
+}
