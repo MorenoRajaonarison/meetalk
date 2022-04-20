@@ -16,7 +16,7 @@ const AddFriendDialog = ({isDialogOpen, closeDialogHandler, sendFriendInvitation
   const [isFormValid, setIsFormValid] = useState(false)
 
   const handleSendInvitation = () => {
-    sendFriendInvitation({mail})
+    sendFriendInvitation({targetMail: mail}, handleCloseDialog)
   }
 
   const handleCloseDialog = () => {
