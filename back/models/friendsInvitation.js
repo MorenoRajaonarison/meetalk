@@ -5,7 +5,7 @@ const friendsInvitationSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "user"
   },
-  reveiverId: {
+  receiverId: {
     type: Schema.Types.ObjectId,
     ref: "user"
   }

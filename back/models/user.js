@@ -10,7 +10,10 @@ const userSchema = new Schema({
     },
     password: {
         type: String
-    }
+    },
+    friends: [{
+        type: Schema.Types.Object, ref: 'user'
+    }]
 })
 
 module.exports = model("user", userSchema)
