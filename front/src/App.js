@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom
 import LoginPage from './authPages/LoginPage/LoginPage'
 import RegisterPage from './authPages/RegisterPage/RegisterPage'
 import Dashboard from './Dashboard/Dashboard'
-import AlertNotif from "./shared/components/AlertNotif";
+import AlertNotif from "./shared/components/AlertNotif"
 
 function App() {
   return <>
