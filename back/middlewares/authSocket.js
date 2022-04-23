@@ -13,4 +13,4 @@ const verifyTokenSocket = (socket, next) => {
   next()
 }
 
-module.exports = verifyTokenSocket
+module.exports = verifyTokenSocket  
