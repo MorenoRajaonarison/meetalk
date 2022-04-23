@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import {Tooltip, Typography, Box} from "@mui/material"
 import Avatar from "../../../shared/components/Avatar"
 import InvitationDecision from './InvitationDecision'
+import {connect} from 'react-redux'
+import {getActions} from '../../../store/actions/friendsActions'
 
 const InvitationItem = ({id, username, mail, acceptInvitation = () => {}, rejectInvitation = () => {}}) => {
   const [isDisabledBtn, setIsDisabledBtn] = useState(false)
@@ -49,4 +51,10 @@ const InvitationItem = ({id, username, mail, acceptInvitation = () => {}, reject
   )
 }
 
-export default InvitationItem
+const mapActionToProps = dispatch => {
+  return {
+    ...getActions(dispatch)
+  }
+}
+
+export default connect(null,mapActionToProps)(InvitationItem)
