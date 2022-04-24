@@ -35,26 +35,24 @@ const sendFriendInvitation = (data, closeDialogHandler) => {
   }
 }
 
-const acceptInvitation = (data, closeDialogHandler) => {
+const acceptInvitation = (data) => {
   return async dispatch => {
     const response = await api.acceptInvitation(data)
     if(response.e){
       dispatch(openAlertMsg(response.e?.response?.data))
     } else {
       dispatch(openAlertMsg('Invitation accepter'))
-      closeDialogHandler()
     }
   }
 }
 
-const rejectInvitation = (data, closeDialogHandler) => {
+const rejectInvitation = (data) => {
   return async dispatch => {
     const response = await api.rejectInvitation(data)
     if(response.e){
       dispatch(openAlertMsg(response.e?.response?.data))
     } else {
       dispatch(openAlertMsg('Invitation rejeter'))
-      closeDialogHandler()
     }
   }
 }
