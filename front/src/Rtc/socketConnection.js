@@ -1,6 +1,6 @@
 import io from 'socket.io-client'
 import store from "../store/store"
-import {setPendingFriendsInvitations, setFriends} from "../store/actions/friendsActions"
+import {setPendingFriendsInvitations, setFriends, setOnlineUsers} from "../store/actions/friendsActions"
 
 let socket = null
 

@@ -33,7 +33,7 @@ const registerSocketServer = server => {
   })
   setInterval(() => {
     emitOnlineUsers()
-  }, [8000])
+  }, [1000 * 8])
 }
 
 module.exports = {

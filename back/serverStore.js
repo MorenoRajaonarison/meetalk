@@ -36,7 +36,7 @@ const getActiveConnections = userId => {
 
 const getOnlineUsers = () => {
   const onlineUsers = []
-  onlineUsers.forEach((val, key) => {
+  connectedUser.forEach((val, key) => {
     onlineUsers.push({socketId: key, userId: val.userId})
   })
   return onlineUsers
