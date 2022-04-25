@@ -8,6 +8,7 @@ const postAccept = async (req, res) => {
     const invitation = await FriendInvitation.findById(id)
     if(!invitation) return res.status(401).send('Une erreur est survenue')
     const {senderId, receiverId} = invitation
+
     //ajouter a la liste d'amis
     const senderUser = await User.findById(senderId)
     senderUser.friends = [...senderUser.friends, receiverId]

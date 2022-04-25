@@ -1,14 +1,7 @@
 import React from 'react'
 import {styled} from '@mui/material'
-import FriendsListItem from "./FriendsListItem";
-
-const FRIENDS = [
-  {
-    id: 1,
-    username: 'Moreno',
-    isOnline: true
-  }
-]
+import FriendsListItem from "./FriendsListItem"
+import {connect} from 'react-redux'
 
 const MainContainer = styled('div')({
   flexGrow: 1,
@@ -16,10 +9,10 @@ const MainContainer = styled('div')({
 
 })
 
-const FriendsList = () => {
+const FriendsList = ({friends}) => {
   return (
     <MainContainer>
-      {FRIENDS.map(({username, id, isOnline}) =>
+      {friends.map(({username, id, isOnline}) =>
         <FriendsListItem
           username={username}
           id={id}
@@ -30,4 +23,10 @@ const FriendsList = () => {
   )
 }
 
-export default FriendsList
+const mapStoreStateToProps = ({friends}) => {
+  return {
+    ...friends
+  }
+}
+
+export default connect(mapStoreStateToProps)(FriendsList)
