@@ -20,8 +20,10 @@ const postAccept = async (req, res) => {
     //suppr de l'invitation
     await FriendInvitation.findByIdAndDelete(id)
 
-    //TODO: maj de la list d'ami s'ol est actif
-    //TODO: maj de la list d'invitations
+    // maj de la list d'ami s'ol est actif
+    friendsUpdates.updateFriends(senderId.toString())
+    friendsUpdates.updateFriends(receiverId.toString())
+
     friendsUpdates.updateFriendsPendingInvitation(receiverId.toString())
     return res.status(200).send('Ajouter a la list d\'amis')
   }catch(e){
