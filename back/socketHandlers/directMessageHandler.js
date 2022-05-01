@@ -1,5 +1,6 @@
 const Message = require('./../models/message')
 const Conversation = require('./../models/conversation')
+const chatUpdates = require('./updates/chat')
 
 const directMessageHandler = async (socket, data) => {
   try {
@@ -24,14 +25,14 @@ const directMessageHandler = async (socket, data) => {
       await conversation.save()
 
       // persist et maj
-      chatUpdates.updateChatHistory(conversation._id.toSring())
+      chatUpdates.updateChatHistory(conversation._id.toString())
     } else {
       const newConversation = await Conversation.create({
         messages: [message._id],
         participants: [id,receiverUserId]
       })
       // persist et maj
-      chatUpdates.updateChatHistory(conversation._id.toSring())
+      chatUpdates.updateChatHistory(conversation._id.toString())
 
     }
   } catch (e) {
