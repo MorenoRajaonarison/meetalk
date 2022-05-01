@@ -6,7 +6,6 @@ const directMessageHandler = async (socket, data) => {
     console.log('directMessageHandler')
     const {id} = socket.user
     const {receiverUserId, content} = data
-    console.log(data)
 
     // creation d'un nouveau message
     const message = await Message.create({
@@ -25,12 +24,15 @@ const directMessageHandler = async (socket, data) => {
       await conversation.save()
 
       // persist et maj
+      chatUpdates.updateChatHistory(conversation._id.toSring())
     } else {
       const newConversation = await Conversation.create({
         messages: [message._id],
         participants: [id,receiverUserId]
       })
       // persist et maj
+      chatUpdates.updateChatHistory(conversation._id.toSring())
+
     }
   } catch (e) {
     console.log(e)
