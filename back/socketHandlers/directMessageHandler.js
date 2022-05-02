@@ -4,14 +4,13 @@ const chatUpdates = require('./updates/chat')
 
 const directMessageHandler = async (socket, data) => {
   try {
-    console.log('directMessageHandler')
     const {id} = socket.user
     const {receiverUserId, content} = data
 
     // creation d'un nouveau message
     const message = await Message.create({
       content,
-      authorId: id,
+      author: id,
       date: new Date(),
       type: 'DIRECT'
     })
@@ -27,13 +26,12 @@ const directMessageHandler = async (socket, data) => {
       // persist et maj
       chatUpdates.updateChatHistory(conversation._id.toString())
     } else {
-      const newConversation = await Conversation.create({
+      const conversation = await Conversation.create({
         messages: [message._id],
         participants: [id,receiverUserId]
       })
       // persist et maj
       chatUpdates.updateChatHistory(conversation._id.toString())
-
     }
   } catch (e) {
     console.log(e)

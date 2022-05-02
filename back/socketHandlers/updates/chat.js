@@ -8,7 +8,7 @@ const updateChatHistory = async (conversationId, toSpecifiedSocketId = null)  =>
     populate: {
       path: 'author',
       model: 'user',
-      select: 'username, _id'
+      select: 'username _id'
     }
   })
 
