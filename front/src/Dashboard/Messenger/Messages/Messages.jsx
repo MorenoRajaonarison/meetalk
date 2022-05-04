@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react'
+import React from 'react'
 import {styled} from '@mui/system'
 import MessagesHeader from './MessagesHeader'
 import {connect} from 'react-redux'
@@ -24,7 +24,7 @@ const convertDateToHumanReadable = (date, format) => {
   return format.replace(/mm|dd|yy|yyy/gi, (matched) => map[matched]);
 };
 
-const Messages = ({chosenChatDetails, messages}) => {
+const Messages = ({chosenChatDetails, messages, userDetails}) => {
   return <MainContainer>
       <MessagesHeader name={chosenChatDetails?.name} />
       {messages.map((message, index) => {
@@ -43,6 +43,7 @@ const Messages = ({chosenChatDetails, messages}) => {
             <Message
               key={message._id}
               content={message.content}
+              senderName={userDetails.username}
               username={message.author.username}
               sameAuthor={sameAuthor}
               date={convertDateToHumanReadable(new Date(message.date), 'dd/mm/yy')}
@@ -54,9 +55,9 @@ const Messages = ({chosenChatDetails, messages}) => {
     </MainContainer>
 }
 
-const mapStoreStateToProps = ({chats}) => {
+const mapStoreStateToProps = ({chats, auth}) => {
   return ({
-    ...chats
+    ...chats, ...auth
   })
 }
 

@@ -3,7 +3,6 @@ import {setMessages} from '../../store/actions/chatActions'
 
 export const updateDirectChatHistoryIfActive = data => {
   const {participants, messages} = data
-  console.log(data)
   // trouver l'id a partir du token et l'user active
   const receiverId = store.getState().chats.chosenChatDetails?.id
   const userId = store.getState().auth.userDetails._id
