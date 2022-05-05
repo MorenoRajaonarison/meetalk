@@ -1,10 +1,12 @@
 import React from 'react'
 import Button from '@mui/material/Button'
-import GroupsIcon from '@mui/icons-material/Groups'
+import {AddIcCall} from '@mui/icons-material'
 
-const MainPageBtn = () => {
+const CreateRoomButton = () => {
+  const createNewRoomHandler = () => {}
   return (
     <Button
+      onClick={createNewRoomHandler}
       style={{
         width: '48px',
         height: '48px',
@@ -17,9 +19,9 @@ const MainPageBtn = () => {
         backgroundColor: '#5865f2',
       }}
     >
-      <GroupsIcon />
+      <AddIcCall />
     </Button>
   )
 }
 
-export default MainPageBtn
+export default CreateRoomButton
