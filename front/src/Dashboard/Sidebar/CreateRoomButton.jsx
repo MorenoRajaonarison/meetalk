@@ -1,9 +1,12 @@
 import React from 'react'
 import Button from '@mui/material/Button'
 import {AddIcCall} from '@mui/icons-material'
+import * as roomHandler from '../../Rtc/roomHandler'
 
 const CreateRoomButton = () => {
-  const createNewRoomHandler = () => {}
+  const createNewRoomHandler = () => {
+      roomHandler.createNewRoom()
+  }
   return (
     <Button
       onClick={createNewRoomHandler}
