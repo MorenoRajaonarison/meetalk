@@ -5,7 +5,7 @@ import {CloseFullscreenOutlined, OpenInFullOutlined} from "@mui/icons-material";
 
 const MainContainer = styled('div')({
   position: 'absolute',
-  bottom: '10px',
+  bottom: '5px',
   right: '10px'
 })
 

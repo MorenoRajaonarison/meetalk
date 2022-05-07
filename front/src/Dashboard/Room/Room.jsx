@@ -1,12 +1,16 @@
 import React, {useState} from 'react'
 import {styled} from "@mui/system"
 import ResizeRoomButton from './ResizeRoomButton'
+import VideosContainer from "./VideosContainer"
+import RoomBtn from "./RoomBtn"
 
 const MainContainer = styled('div')({
   position: 'absolute',
   borderRadius: '8px',
   display : 'flex',
   flexDirection: 'column',
+  alignItems: "center",
+  justifyContent: 'center',
   backgroundColor: '#202225'
 })
 
@@ -30,6 +34,8 @@ const Room = () => {
   }
   return (
     <MainContainer style={isRoomMinimized ? minimizeRoomStyle : fullScreenRoomStyle}>
+      <VideosContainer/>
+      <RoomBtn/>
       <ResizeRoomButton
         isRoomMinimized={isRoomMinimized}
         resizeHandler={roomResizeHandler}
