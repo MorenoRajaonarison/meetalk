@@ -1,5 +1,9 @@
 import React from 'react'
 import {styled} from "@mui/system"
+import ScreenShareBtn from './ScreenShareBtn'
+import MicroBtn from './MicroBtn'
+import CloseRoomBtn from './CloseRoomBtn'
+import CameraBtn from './CameraBtn'
 
 const MainContainer = styled('div')({
   height: '15%',
@@ -15,7 +19,10 @@ const MainContainer = styled('div')({
 const RoomBtn = () => {
   return (
     <MainContainer>
-
+      <ScreenShareBtn/>
+      <MicroBtn/>
+      <CameraBtn/>
+      <CloseRoomBtn/>
     </MainContainer>
   )
 }
