@@ -18,7 +18,7 @@ export const setOpenRoom = (isUserRoomCreator = false, isUserInRoom = false) => 
 
 export const setRoomDetails = roomDetails => {
   return {
-    type: roomDetails.SET_ROOM_DETAILS,
+    type: roomActions.SET_ROOM_DETAILS,
     roomDetails
   }
 }

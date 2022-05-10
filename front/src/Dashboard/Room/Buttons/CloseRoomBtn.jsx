@@ -4,9 +4,9 @@ import {Close} from "@mui/icons-material"
 
 const CloseRoomBtn = () => {
   const [isOpen, setIsOpen] = useState(true)
-  const rooToggle = () => setIsOpen(!isOpen)
+  const roomToggle = () => setIsOpen(!isOpen)
   return (
-    <IconButton onClick={rooToggle} style={{color: '#fff'}}>
+    <IconButton onClick={roomToggle} style={{color: '#fff'}}>
       <Close/>
     </IconButton>
   )
