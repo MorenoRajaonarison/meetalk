@@ -1,12 +1,14 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {IconButton} from '@mui/material'
 import {Close} from "@mui/icons-material"
+import * as roomHandler from '../../../Rtc/roomHandler'
 
 const CloseRoomBtn = () => {
-  const [isOpen, setIsOpen] = useState(true)
-  const roomToggle = () => setIsOpen(!isOpen)
+  const handleLeaveRoom = () => {
+    roomHandler.leaveRoom()
+  }
   return (
-    <IconButton onClick={roomToggle} style={{color: '#fff'}}>
+    <IconButton onClick={handleLeaveRoom} style={{color: '#fff'}}>
       <Close/>
     </IconButton>
   )

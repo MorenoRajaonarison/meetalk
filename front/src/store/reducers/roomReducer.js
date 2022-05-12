@@ -23,7 +23,7 @@ const reducer = (state = initState, action) => {
     case roomActions.SET_ROOM_DETAILS:
       return {
         ...state,
-        roomDetails: action.userDetails
+        roomDetails: action.roomDetails
       }
     case roomActions.SET_ACTIVE_ROOMS:
       return  {
