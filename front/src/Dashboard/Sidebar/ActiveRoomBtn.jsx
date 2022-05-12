@@ -1,12 +1,13 @@
 import React from 'react'
 import {Tooltip} from "@mui/material";
-import Avatar from "../../shared/components/Avatar";
-import Button from "@mui/material/Button";
+import Avatar from "../../shared/components/Avatar"
+import Button from "@mui/material/Button"
+import * as roomHandler from '../../Rtc/roomHandler'
 
 const ActiveRoomBtn = ({creatorUsername,amountOfParticipants,isUserInRoom,roomId}) => {
   const handleJoinActiveRoom = () => {
     if(amountOfParticipants < 4){
-      // joindre au salon
+      roomHandler.joinRoom(roomId)
     }
   }
 
