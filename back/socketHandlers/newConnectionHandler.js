@@ -19,7 +19,6 @@ const newConnectionHandler = async (socket, io) => {
   setTimeout(() => {
     roomsUpdate.updateRooms(socket.id)
   }, [500])
-
 }
 
 module.exports = newConnectionHandler
