@@ -31,9 +31,12 @@ export const updateActiveRooms = data => {
 }
 
 export const joinRoom = roomId => {
-  store.dispatch(setRoomDetails({roomId}))
-  store.dispatch(setOpenRoom(false, true))
-  socketConnection.joinRoom({roomId})
+  const successCallBack = () => {
+    store.dispatch(setRoomDetails({roomId}))
+    store.dispatch(setOpenRoom(false, true))
+    socketConnection.joinRoom({roomId})
+  }
+  webRtcHandler.getLocalStreamPreview(false, successCallBack)
 }
 
 export const leaveRoom = () => {
