@@ -16,6 +16,12 @@ export const setOpenRoom = (isUserRoomCreator = false, isUserInRoom = false) => 
   }
 }
 
+export const getActions = dispatch => {
+  return {
+    setAudioOnly: onlyAudio => dispatch(setAudioOnly(onlyAudio))
+  }
+}
+
 export const setRoomDetails = roomDetails => {
   return {
     type: roomActions.SET_ROOM_DETAILS,
@@ -37,3 +43,9 @@ export const setLocalStream = localStream => {
   }
 }
 
+export const setAudioOnly = audioOnly => {
+  return {
+    type: roomActions.SET_AUDIO_ONLY,
+    audioOnly
+  }
+}

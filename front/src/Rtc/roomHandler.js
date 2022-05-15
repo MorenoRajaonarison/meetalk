@@ -8,7 +8,7 @@ export const createNewRoom = () => {
     store.dispatch(setOpenRoom(true, true))
     socketConnection.createNewRoom()
   }
-  webRtcHandler.getLocalStreamPreview(false, successCallBack)
+  webRtcHandler.getLocalStreamPreview(store.getState().room.audioOnly, successCallBack)
 }
 
 export const newRoomCreated = data => {
@@ -36,7 +36,7 @@ export const joinRoom = roomId => {
     store.dispatch(setOpenRoom(false, true))
     socketConnection.joinRoom({roomId})
   }
-  webRtcHandler.getLocalStreamPreview(false, successCallBack)
+  webRtcHandler.getLocalStreamPreview(store.getState().room.audioOnly, successCallBack)
 }
 
 export const leaveRoom = () => {
