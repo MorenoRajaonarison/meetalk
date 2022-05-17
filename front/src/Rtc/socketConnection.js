@@ -44,6 +44,11 @@ export const connectWithSocketServer = (userDetails) => {
   socket.on('active-rooms', data => {
     roomHandler.updateActiveRooms(data)
   })
+
+  socket.on('conn-prepare', data => {
+    console.log(`connexion prepare coming`)
+    console.log(data)
+  })
 }
 
 export const sendDirectMessage = data => {
