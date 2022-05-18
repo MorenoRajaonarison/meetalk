@@ -1,5 +1,9 @@
 back/.env
+back/package-lock.json
 back/node_modules/
+
+
 front/node_modules/
+front/package-lock.json
 /.idea/
 .idea/meetalk.iml

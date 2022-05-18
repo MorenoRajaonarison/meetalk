@@ -2,7 +2,8 @@ import io from 'socket.io-client'
 import store from "../store/store"
 import {setPendingFriendsInvitations, setFriends, setOnlineUsers} from "../store/actions/friendsActions"
 import {updateDirectChatHistoryIfActive} from '../shared/Utils/chat'
-import * as roomHandler from "./roomHandler";
+import * as roomHandler from "./roomHandler"
+import * as webRtcHandler from './webRtcHandler'
 
 let socket = null
 
@@ -46,8 +47,9 @@ export const connectWithSocketServer = (userDetails) => {
   })
 
   socket.on('conn-prepare', data => {
-    console.log(`connexion prepare coming`)
-    console.log(data)
+    const {connUserSocketId} = data
+    webRtcHandler.prepareNewPeerConnexion(data, false)
+    socket.emit('conn-init', {connUserSocketId})
   })
 }
 
