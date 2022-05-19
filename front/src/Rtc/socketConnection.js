@@ -51,6 +51,11 @@ export const connectWithSocketServer = (userDetails) => {
     webRtcHandler.prepareNewPeerConnexion(data, false)
     socket.emit('conn-init', {connUserSocketId})
   })
+
+  socket.on('conn-init', data => {
+    const {connUserSocketId} = data
+    webRtcHandler.prepareNewPeerConnexion(connUserSocketId, true)
+  })
 }
 
 export const sendDirectMessage = data => {
