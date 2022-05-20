@@ -48,13 +48,17 @@ export const connectWithSocketServer = (userDetails) => {
 
   socket.on('conn-prepare', data => {
     const {connUserSocketId} = data
-    webRtcHandler.prepareNewPeerConnexion(data, false)
+    webRtcHandler.prepareNewPeerConnexion(connUserSocketId, false)
     socket.emit('conn-init', {connUserSocketId})
   })
 
   socket.on('conn-init', data => {
     const {connUserSocketId} = data
     webRtcHandler.prepareNewPeerConnexion(connUserSocketId, true)
+  })
+
+  socket.on('conn-signal', data => {
+    webRtcHandler.handleSignalingData(data)
   })
 }
 
@@ -76,4 +80,8 @@ export const joinRoom = data => {
 
 export const leaveRoom = data => {
   socket.emit('room-leave', data)
+}
+
+export const signalPeerData = data => {
+  socket.emit('conn-signal', data)
 }
