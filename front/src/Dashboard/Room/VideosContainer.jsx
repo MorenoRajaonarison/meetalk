@@ -10,11 +10,13 @@ const MainContainer = styled('div')({
   flexWrap: 'wrap'
 })
 
-const VideosContainer = ({localStream}) => {
-  const room = useSelector(state => state.room)
+const VideosContainer = () => {
+  const {localStream, remoteStreams} = useSelector(state => state.room)
+  console.log({localStream, remoteStreams})
   return (
     <MainContainer>
-      <Video stream={room.localStream} isLocalStream/>
+      <Video stream={localStream} isLocalStream/>
+      {remoteStreams.map(stream => <Video stream={stream} key={stream.id}/>)}
     </MainContainer>
   )
 }

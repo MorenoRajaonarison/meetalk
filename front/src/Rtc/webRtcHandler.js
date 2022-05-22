@@ -1,5 +1,5 @@
 import store from '../store/store'
-import {setLocalStream} from "../store/actions/roomActions"
+import {setLocalStream, setRemoteStreams} from "../store/actions/roomActions"
 import * as socketConnection from './socketConnection'
 import Peer from 'simple-peer'
 
@@ -62,14 +62,14 @@ export const prepareNewPeerConnexion = (connUserSocketId, isInitiator) => {
       connUserSocketId
     }
 
-    socketConnection.signalPeerData(signalData)
-
-    // socketConnection.signalPeerData(signalData)
+      socketConnection.signalPeerData(signalData)
   })
   peers[connUserSocketId].on('stream', remoteStream => {
     //TODO: add new remote stream to our server store
     console.log('remote stream came from other user')
     console.log('connction etablished')
+    remoteStream.connUserSocketId = connUserSocketId
+    addNewRemoteStream(remoteStream)
   })
 }
 
@@ -78,4 +78,10 @@ export const handleSignalingData = data => {
   if(peers[connUserSocketId]){
     peers[connUserSocketId].signal(signal)
   }
+}
+
+const addNewRemoteStream = remoteStream => {
+  const remoteStreams = store.getState().room.remoteStreams
+  const newRemoteStreams = [...remoteStreams, remoteStream]
+  store.dispatch(setRemoteStreams(newRemoteStreams))
 }
