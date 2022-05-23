@@ -85,3 +85,24 @@ const addNewRemoteStream = remoteStream => {
   const newRemoteStreams = [...remoteStreams, remoteStream]
   store.dispatch(setRemoteStreams(newRemoteStreams))
 }
+
+export const closeAllConn = () => {
+  Object.entries(peers).forEach(mappedObject => {
+    const connUserSocketId = mappedObject[0]
+    if(peers[connUserSocketId]){
+      peers[connUserSocketId].destroy()
+      delete peers[connUserSocketId]
+    }
+  })
+}
+
+export const handleParticipantLeft = data => {
+  const {connUserSocketId} = data
+  if(peers[connUserSocketId]){
+    peers[connUserSocketId].destroy()
+    delete peers[connUserSocketId]
+  }
+  const remoteStreams = store.getState().room.remoteStreams
+  const newRemoteStreams = remoteStreams.filter(stream => stream.connUserSocketId !== connUserSocketId)
+  store.dispatch(setRemoteStreams(newRemoteStreams))
+}
