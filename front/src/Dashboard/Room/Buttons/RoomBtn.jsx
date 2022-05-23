@@ -1,4 +1,5 @@
 import React from 'react'
+import {useSelector} from 'react-redux'
 import {styled} from "@mui/system"
 import ScreenShareBtn from './ScreenShareBtn'
 import MicroBtn from './MicroBtn'
@@ -17,11 +18,12 @@ const MainContainer = styled('div')({
 })
 
 const RoomBtn = () => {
+  const {localStream} = useSelector(state => state.room)
   return (
     <MainContainer>
       <ScreenShareBtn/>
-      <MicroBtn/>
-      <CameraBtn/>
+      <MicroBtn localStream={localStream}/>
+      <CameraBtn localStream={localStream}/>
       <CloseRoomBtn/>
     </MainContainer>
   )
