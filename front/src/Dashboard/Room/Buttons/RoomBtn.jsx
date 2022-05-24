@@ -1,10 +1,11 @@
 import React from 'react'
-import {useSelector} from 'react-redux'
+import {connect} from 'react-redux'
 import {styled} from "@mui/system"
 import ScreenShareBtn from './ScreenShareBtn'
 import MicroBtn from './MicroBtn'
 import CloseRoomBtn from './CloseRoomBtn'
 import CameraBtn from './CameraBtn'
+import {getActions} from '../../../store/actions/roomActions'
 
 const MainContainer = styled('div')({
   height: '15%',
@@ -17,11 +18,11 @@ const MainContainer = styled('div')({
   justifyContent: "center"
 })
 
-const RoomBtn = () => {
-  const {localStream} = useSelector(state => state.room)
+const RoomBtn = (props) => {
+  const {localStream} = props
   return (
     <MainContainer>
-      <ScreenShareBtn/>
+      <ScreenShareBtn {...props}/>
       <MicroBtn localStream={localStream}/>
       <CameraBtn localStream={localStream}/>
       <CloseRoomBtn/>
@@ -29,4 +30,13 @@ const RoomBtn = () => {
   )
 }
 
-export default RoomBtn
+const mapStateToProps = ({room}) => {
+  return {...room}
+}
+const mapActionToProps = dispatch => {
+  return {
+    ...getActions(dispatch)
+  }
+}
+
+export default connect(mapStateToProps,mapActionToProps)(RoomBtn)

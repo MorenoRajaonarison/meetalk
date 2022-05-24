@@ -18,7 +18,8 @@ export const setOpenRoom = (isUserRoomCreator = false, isUserInRoom = false) => 
 
 export const getActions = dispatch => {
   return {
-    setAudioOnly: onlyAudio => dispatch(setAudioOnly(onlyAudio))
+    setAudioOnly: onlyAudio => dispatch(setAudioOnly(onlyAudio)),
+    setScreenSharingStream: stream => dispatch(setScreenSharingStream(stream))
   }
 }
 
@@ -54,5 +55,13 @@ export const setRemoteStreams = remoteStreams => {
   return {
     type: roomActions.SET_REMOTE_STREAMS,
     remoteStreams
+  }
+}
+
+export const setScreenSharingStream = stream => {
+  return {
+    type: roomActions.SET_SCREEN_SHARE_STREAM,
+    isScreenSharingActive: stream? true:false,
+    screenSharingStream: stream || null
   }
 }
