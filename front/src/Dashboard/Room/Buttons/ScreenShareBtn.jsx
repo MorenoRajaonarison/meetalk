@@ -11,7 +11,7 @@ const constraints = {
 const ScreenShareBtn = ({localStream, screenSharingStream, isScreenSharingActive, setScreenSharingStream}) => {
   const [isSharing, setIsSharing] = useState(false)
   const sharingToggle = async () => {
-    setIsSharing(!sharingToggle)
+    setIsSharing(!isSharing)
     if(!isScreenSharingActive){
       let stream = null
       try {
@@ -31,7 +31,7 @@ const ScreenShareBtn = ({localStream, screenSharingStream, isScreenSharingActive
   }
   return (
     <IconButton onClick={sharingToggle} style={{color: '#fff'}}>
-      {isSharing ? <StopScreenShareOutlined/> : <ScreenShareOutlined/>}
+      {isSharing ?  <ScreenShareOutlined/>:<StopScreenShareOutlined/> }
     </IconButton>
   )
 }

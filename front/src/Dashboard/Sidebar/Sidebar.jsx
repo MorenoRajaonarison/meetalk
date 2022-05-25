@@ -2,7 +2,7 @@ import React from 'react'
 import {styled} from '@mui/system'
 import MainPageBtn from './MainPageBtn'
 import CreateRoomButton from './CreateRoomButton'
-import {useSelector, useDispatch} from "react-redux"
+import {useSelector} from "react-redux"
 import ActiveRoomBtn from "./ActiveRoomBtn"
 
 const MainContainer = styled('div')({
