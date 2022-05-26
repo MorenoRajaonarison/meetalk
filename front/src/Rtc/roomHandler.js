@@ -4,7 +4,8 @@ import {
   setRoomDetails,
   setActiveRooms,
   setLocalStream,
-  setRemoteStreams
+  setRemoteStreams,
+  setScreenSharingStream
 } from "../store/actions/roomActions"
 import * as socketConnection from './socketConnection'
 import * as webRtcHandler from './webRtcHandler'
@@ -52,7 +53,13 @@ export const leaveRoom = () => {
     localStream.getTracks().forEach(track => track.stop())
     store.dispatch(setLocalStream(null))
   }
-
+  
+  const screenSharingStream = sore.getState().room.screenSharingStream
+  if(screenSharingStream) {
+    localStream.getTracks().forEach(track => track.stop())
+    store.dispatch(setScreenSharingStream(null))
+  }
+  
   store.dispatch(setRemoteStreams([]))
   webRtcHandler.closeAllConn()
 
