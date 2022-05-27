@@ -5,7 +5,8 @@ export const roomActions = {
   SET_LOCAL_STREAM: 'ROOM.SET_LOCAL_STREAM',
   SET_REMOTE_STREAMS: 'ROOM.SET_REMOTE_STREAMS',
   SET_AUDIO_ONLY: 'ROOM.SET_AUDIO_ONLY',
-  SET_SCREEN_SHARE_STREAM: 'ROOM.SET_SCREEN_SHARE_STREAM'
+  SET_SCREEN_SHARE_STREAM: 'ROOM.SET_SCREEN_SHARE_STREAM',
+  SET_IS_USER_JOINED_WITH_ONLY_AUDIO: 'ROOM.SET_IS_USER_JOINED_WITH_ONLY_AUDIO '
 }
 
 export const setOpenRoom = (isUserRoomCreator = false, isUserInRoom = false) => {
@@ -61,7 +62,14 @@ export const setRemoteStreams = remoteStreams => {
 export const setScreenSharingStream = stream => {
   return {
     type: roomActions.SET_SCREEN_SHARE_STREAM,
-    isScreenSharingActive: stream? true:false,
+    isScreenSharingActive: !!stream,
     screenSharingStream: stream || null
+  }
+}
+
+export const setIsUserJoinedOnlyWithAudio = onlyWithAudio => {
+  return {
+    type: roomActions.SET_IS_USER_JOINED_WITH_ONLY_AUDIO,
+    isUserJoinedWithOnlyAudio: onlyWithAudio
   }
 }

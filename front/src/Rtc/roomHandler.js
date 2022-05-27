@@ -5,7 +5,8 @@ import {
   setActiveRooms,
   setLocalStream,
   setRemoteStreams,
-  setScreenSharingStream
+  setScreenSharingStream,
+  setIsUserJoinedOnlyWithAudio
 } from "../store/actions/roomActions"
 import * as socketConnection from './socketConnection'
 import * as webRtcHandler from './webRtcHandler'
@@ -13,6 +14,8 @@ import * as webRtcHandler from './webRtcHandler'
 export const createNewRoom = () => {
   const successCallBack = () => {
     store.dispatch(setOpenRoom(true, true))
+    const audioOnly = store.getState().room.audioOnly
+    store.dispatch(setIsUserJoinedOnlyWithAudio(audioOnly))
     socketConnection.createNewRoom()
   }
   webRtcHandler.getLocalStreamPreview(store.getState().room.audioOnly, successCallBack)
@@ -41,6 +44,8 @@ export const joinRoom = roomId => {
   const successCallBack = () => {
     store.dispatch(setRoomDetails({roomId}))
     store.dispatch(setOpenRoom(false, true))
+    const audioOnly = store.getState().room.audioOnly
+    store.dispatch(setIsUserJoinedOnlyWithAudio(audioOnly))
     socketConnection.joinRoom({roomId})
   }
   webRtcHandler.getLocalStreamPreview(store.getState().room.audioOnly, successCallBack)
@@ -54,7 +59,7 @@ export const leaveRoom = () => {
     store.dispatch(setLocalStream(null))
   }
   
-  const screenSharingStream = sore.getState().room.screenSharingStream
+  const screenSharingStream = store.getState().room.screenSharingStream
   if(screenSharingStream) {
     localStream.getTracks().forEach(track => track.stop())
     store.dispatch(setScreenSharingStream(null))
