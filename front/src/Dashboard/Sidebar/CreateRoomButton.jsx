@@ -3,12 +3,13 @@ import Button from '@mui/material/Button'
 import {AddIcCall} from '@mui/icons-material'
 import * as roomHandler from '../../Rtc/roomHandler'
 
-const CreateRoomButton = () => {
+const CreateRoomButton = ({isUserInRoom}) => {
   const createNewRoomHandler = () => {
       roomHandler.createNewRoom()
   }
   return (
     <Button
+      disabled={isUserInRoom}
       onClick={createNewRoomHandler}
       style={{
         width: '48px',

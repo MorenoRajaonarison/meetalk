@@ -18,7 +18,7 @@ const Sidebar = () => {
   const {activeRooms, isUserInRoom} = useSelector(state => state.room)
   return <MainContainer>
     <MainPageBtn/>
-    <CreateRoomButton/>
+    <CreateRoomButton isUserInRoom={isUserInRoom}/>
     {activeRooms.map(room => (
       <ActiveRoomBtn
         roomId={room.roomId}
